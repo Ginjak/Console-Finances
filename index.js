@@ -98,19 +98,57 @@ for (var i = 0; i < totalMonths; i++) {
 // Push month to month profit/loss changes to a new array
 var changesArr = [];
 for (var i = 1; i < totalMonths; i++) {
-  changesArr.push(finances[i][1] - finances[i - 1][1]);
+  changesArr.push([finances[i][0], finances[i][1] - finances[i - 1][1]]);
 }
 
 // Average of a profit/loss changes
 var changesAverage = 0;
 var changesTotal = 0;
 for (var i = 0; i < changesArr.length; i++) {
-  changesTotal += changesArr[i];
+  changesTotal += changesArr[i][1];
   changesAverage = (changesTotal / (totalMonths - 1)).toFixed(2);
 }
 
-console.log(changesAverage);
-console.log(changesTotal);
-console.log(changesArr);
-console.log(totalMonths);
-console.log(totalProfitLoss);
+// Greatest increase/decrease in profit/losses
+var minNumber = 0;
+var maxNumber = 0;
+var minNumberMonth;
+var maxNumberMonth;
+for (var i = 1; i < changesArr.length; i++) {
+  if (minNumber > changesArr[i][1]) {
+    minNumber = changesArr[i][1];
+    minNumberMonth = changesArr[i][0];
+  } else if (maxNumber < changesArr[i][1]) {
+    maxNumber = changesArr[i][1];
+    maxNumberMonth = changesArr[i][0];
+  }
+}
+
+console.log(
+  "Financial Analysis" +
+    "\n" +
+    "----------------" +
+    "\n" +
+    "Total Months: " +
+    totalMonths +
+    "\n" +
+    "Total: $" +
+    totalProfitLoss +
+    "\n" +
+    "Average Change: " +
+    changesAverage +
+    "\n" +
+    "Greatest Increase in Profit/Losses: " +
+    maxNumberMonth +
+    " " +
+    "($" +
+    maxNumber +
+    ")" +
+    "\n" +
+    "Greatest Decrease in Profits/Losses: " +
+    minNumberMonth +
+    " " +
+    "($" +
+    minNumber +
+    ")"
+);
