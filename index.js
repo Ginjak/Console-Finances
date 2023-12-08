@@ -125,26 +125,20 @@ for (var i = 1; i < changesArr.length; i++) {
 }
 
 console.log(
-  "Financial Analysis" +
-    "\n" +
-    "----------------" +
-    "\n" +
+  "Financial Analysis\n" +
+    "----------------\n" +
     "Total Months: " +
     totalMonths +
-    "\n" +
-    "Total: $" +
+    "\nTotal: $" +
     totalProfitLoss +
-    "\n" +
-    "Average Change: " +
+    "\nAverage Change: " +
     changesAverage +
-    "\n" +
-    "Greatest Increase in Profit/Losses: " +
+    "\nGreatest Increase in Profit/Losses: " +
     maxNumberMonth +
     " " +
     "($" +
     maxNumber +
-    ")" +
-    "\n" +
+    ")\n" +
     "Greatest Decrease in Profits/Losses: " +
     minNumberMonth +
     " " +
