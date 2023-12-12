@@ -87,62 +87,57 @@ var finances = [
   ["Feb-2017", 671099],
 ];
 
-// Total months
 var totalMonths = finances.length;
-// Total Profit/Loss
-var totalProfitLoss = 0;
-for (var i = 0; i < totalMonths; i++) {
-  totalProfitLoss += finances[i][1];
+var totalSum = 0;
+var change = 0;
+var changeTotal = 0;
+var averageChange = 0;
+var maxValue = 0;
+var minValue = 0;
+var maxValueMonth = 0;
+var minValueMonth = 0;
+
+for (var i = 0; i < finances.length; i++) {
+  totalSum += finances[i][1];
 }
 
-// Push month to month profit/loss changes to a new array
-var changesArr = [];
-for (var i = 1; i < totalMonths; i++) {
-  changesArr.push([finances[i][0], finances[i][1] - finances[i - 1][1]]);
-}
+for (var i = 1; i < finances.length; i++) {
+  change = finances[i][1] - finances[i - 1][1];
+  changeTotal += change;
 
-// Average of a profit/loss changes
-var changesAverage = 0;
-var changesTotal = 0;
-for (var i = 0; i < changesArr.length; i++) {
-  changesTotal += changesArr[i][1];
-  changesAverage = (changesTotal / (totalMonths - 1)).toFixed(2);
-}
-
-// Greatest increase/decrease in profit/losses
-var minNumber = 0;
-var maxNumber = 0;
-var minNumberMonth;
-var maxNumberMonth;
-for (var i = 1; i < changesArr.length; i++) {
-  if (minNumber > changesArr[i][1]) {
-    minNumber = changesArr[i][1];
-    minNumberMonth = changesArr[i][0];
-  } else if (maxNumber < changesArr[i][1]) {
-    maxNumber = changesArr[i][1];
-    maxNumberMonth = changesArr[i][0];
+  if (change > maxValue) {
+    maxValue = change;
+    maxValueMonth = i;
+  }
+  if (change < minValue) {
+    minValue = change;
+    minValueMonth = i;
   }
 }
+
+averageChange = (changeTotal / (totalMonths - 1)).toFixed(2);
 
 console.log(
   "Financial Analysis\n" +
     "----------------\n" +
     "Total Months: " +
     totalMonths +
-    "\nTotal: $" +
-    totalProfitLoss +
-    "\nAverage Change: " +
-    changesAverage +
-    "\nGreatest Increase in Profit/Losses: " +
-    maxNumberMonth +
-    " " +
-    "($" +
-    maxNumber +
-    ")\n" +
+    "\n" +
+    "Total: $" +
+    totalSum +
+    "\n" +
+    "Average Change: " +
+    averageChange +
+    "\n" +
+    "Greatest Increase in Profits/Losses: " +
+    finances[maxValueMonth][0] +
+    " ($" +
+    maxValue +
+    ")" +
+    "\n" +
     "Greatest Decrease in Profits/Losses: " +
-    minNumberMonth +
-    " " +
-    "($" +
-    minNumber +
+    finances[minValueMonth][0] +
+    " ($" +
+    minValue +
     ")"
 );
