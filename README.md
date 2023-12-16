@@ -35,7 +35,7 @@ n/a
 
 To view the data output for financial analysis when the webpage is open:
 
-1. Open the webpage.
+1. [Open web page](https://ginjak.github.io/Console-Finances/)
 2. Press `Ctrl + Shift + I` on Windows or `Option + ⌘ + J` on macOS to open the developer tools.
 3. Select the "Console" tab.
 
